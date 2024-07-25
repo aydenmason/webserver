@@ -21,6 +21,7 @@ void handle_client(int client_socket) {
     close(client_socket);
 }
 
+
 int main() {
     int server_socket, client_socket;
     struct sockaddr_in server_addr, client_addr;

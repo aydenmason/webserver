@@ -10,8 +10,8 @@
 const int BUFFER_SIZE = 4096;
 
 void handleError(const std::string& msg) {
-    perror(msg.c_str());
-    exit(EXIT_FAILURE);
+    std::cout << "RIP" << " Message: "<< msg << std::endl;
+    exit(1);
 }
 
 int main() {
@@ -35,7 +35,7 @@ int main() {
 
     // Connect to the server
     if (connect(sockfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0) {
-        handleError("connect");
+        handleError("socket target not found");
     }
 
     // Send an HTTP GET request
@@ -56,10 +56,8 @@ int main() {
         handleError("recv");
     }
 
-    // Print the response
     std::cout << "Received " << bytesReceived << " bytes:\n" << buffer << std::endl;
 
-    // Close the socket
     close(sockfd);
 
     return 0;
